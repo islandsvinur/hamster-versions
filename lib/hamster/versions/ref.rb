@@ -12,6 +12,8 @@ module Hamster
 
       def dosync(changed_value)
         @newer = Ref.new(@deref.merge(changed_value), self)
+        freeze
+        @newer
       end
 
       def newest

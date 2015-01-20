@@ -13,6 +13,7 @@ describe Hamster::Versions::Ref do
       it("") { expect(subject.newest.deref[:name]).to eq 'Simon' }
       it("#newest is a shorthand to the newest generation") { expect(subject.newest).to be subject.newer.newer }
       it("#oldest is a shorthand to the oldest generation") { expect(subject.newest.oldest).to be subject }
+      it("the second generation cannot be changed anymore") { expect{subject.newer.dosync(name: 'Theodore') }.to raise_error(RuntimeError, /can't modify frozen/) }
     end
   end
 end
